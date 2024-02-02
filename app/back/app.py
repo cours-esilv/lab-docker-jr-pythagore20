@@ -10,9 +10,13 @@ if 'CURRENT_ENVIRONMENT' not in os.environ:
     print('[ERROR] Please specify it when you start the container.', file=sys.stderr)
     sys.exit(1)
 
-# Check if the 'logs' directory exists before creating it
-if not os.path.exists('./logs'):
-    os.mkdir('./logs')
+# Use try-except block to handle potential race condition
+try:
+    # Create the 'logs' directory and its parent directories if they don't exist
+    os.makedirs('./logs', exist_ok=True)
+except FileExistsError:
+    # Directory already exists, no need to create it
+    pass
 
 app = Flask(__name__)
 CORS(app)
