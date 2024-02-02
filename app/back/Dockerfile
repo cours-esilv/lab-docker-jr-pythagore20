@@ -1,19 +1,17 @@
-# Use an official Python runtime as a parent image
-FROM python:3.8
+# Utilisez une image Python existante en tant que base
+FROM python:3.9
 
-# Set the working directory to /app/back
-WORKDIR /app/back
+# Définissez le répertoire de travail dans le conteneur
+WORKDIR /app
 
-# Copy the contents of the local app/back directory to the container
-COPY . /app/back
+# Copiez le fichier requirements.txt dans le conteneur
+COPY ./back/requirements.txt .
 
-# Install any needed packages specified in requirements.txt
+# Installez les dépendances Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port that Flask will run on
-EXPOSE 5000
+# Copiez le contenu du répertoire back dans le conteneur
+COPY ./back .
 
-# Define the command to run your application
-# CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
-CMD ["flask", "run", "--host=0.0.0.0"]
-
+# Définissez la commande par défaut à exécuter lorsque le conteneur démarre
+CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
