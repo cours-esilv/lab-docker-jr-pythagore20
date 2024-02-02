@@ -1,17 +1,14 @@
-# Utilisez une image Python existante en tant que base
-FROM python:3.9
+# Utiliser une image Python de base à partir de Docker Hub
+FROM python:3.9-slim  # Adaptez la version de Python si nécessaire
 
-# Définissez le répertoire de travail dans le conteneur
-WORKDIR /app
+# Définir le répertoire de travail à l'intérieur du conteneur
+WORKDIR /app/back
 
-# Copiez le fichier requirements.txt dans le conteneur
-COPY ./back/requirements.txt .
+# Copier le code source et le fichier requirements.txt dans le conteneur
+COPY . .
 
-# Installez les dépendances Python
-RUN pip install --no-cache-dir -r requirements.txt
+# Installer les dépendances Python
+RUN pip install -r requirements.txt
 
-# Copiez le contenu du répertoire back dans le conteneur
-COPY ./back .
-
-# Définissez la commande par défaut à exécuter lorsque le conteneur démarre
+# Définir la commande à exécuter lors du démarrage du conteneur
 CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
