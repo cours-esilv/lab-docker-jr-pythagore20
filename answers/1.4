@@ -1,12 +1,1 @@
-#!/bin/bash
-
-# Redémarrer le conteneur en utilisant le CONTAINER ID
-docker restart fc1e2c881e2b
-
-# Ouvrir les ports nécessaires pour accéder au service
-docker exec -it fc1e2c881e2b iptables -A INPUT -p tcp --dport 5000 -j ACCEPT
-docker exec -it fc1e2c881e2b iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
-
-# Facultatif : sauvegarder les règles iptables
-docker exec -it fc1e2c881e2b service iptables save
-docker exec -it fc1e2c881e2b service iptables restart
+docker run -p 5000:5000 mlops-backend

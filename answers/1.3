@@ -2,4 +2,4 @@
 docker build -t mlops-backend .
 
 # Lancer le conteneur avec le port 8080 mappé sur le port 5000 du conteneur
-docker run -p 8080:5000 -e CURRENT_ENVIRONMENT=production mlops-backend
+docker run -it mlops-backend
