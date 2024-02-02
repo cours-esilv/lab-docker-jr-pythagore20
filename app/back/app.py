@@ -6,12 +6,16 @@ from datetime import datetime
 
 if 'CURRENT_ENVIRONMENT' not in os.environ:
     print('===================================================================', file=sys.stderr)
-    print('[ERROR] Missing value for CURRENT_ENVIRONMENT envrionment variable.', file=sys.stderr)
+    print('[ERROR] Missing value for CURRENT_ENVIRONMENT environment variable.', file=sys.stderr)
     print('[ERROR] Please specify it when you start the container.', file=sys.stderr)
     sys.exit(1)
 
-# Create logs folder
-os.mkdir('./logs')
+# Check if the 'logs' directory exists before creating it
+logs_directory = './logs'
+if not os.path.exists(logs_directory):
+    os.mkdir(logs_directory)
+else:
+    print(f"The '{logs_directory}' directory already exists.")
 
 app = Flask(__name__)
 CORS(app)
@@ -23,7 +27,7 @@ def default():
         "environment": os.environ['CURRENT_ENVIRONMENT'],
         "hostname": os.uname()[1],
         "result": "root"
-    }    
+    }
 
 @app.route("/get/<name>")
 def get(name):
@@ -37,7 +41,7 @@ def get(name):
 @app.route("/write/<something>")
 def write(something):
     print(something)
-    with open('logs/my-messages.log', 'a') as the_file:
+    with open(f'{logs_directory}/my-messages.log', 'a') as the_file:
         the_file.write(f"{something}\n")
     return {
         "status": "ok"
