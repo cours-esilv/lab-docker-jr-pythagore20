@@ -15,5 +15,6 @@ EXPOSE 5000
 
 # Define the command to run your application
 # CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
-CMD ["sh", "-c", "CURRENT_ENVIRONMENT=development python3 -m flask run --host=0.0.0.0"]
+#CMD ["sh", "-c", "CURRENT_ENVIRONMENT=development python3 -m flask run --host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0"]
 
