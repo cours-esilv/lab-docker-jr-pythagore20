@@ -6,12 +6,13 @@ from datetime import datetime
 
 if 'CURRENT_ENVIRONMENT' not in os.environ:
     print('===================================================================', file=sys.stderr)
-    print('[ERROR] Missing value for CURRENT_ENVIRONMENT envrionment variable.', file=sys.stderr)
+    print('[ERROR] Missing value for CURRENT_ENVIRONMENT environment variable.', file=sys.stderr)
     print('[ERROR] Please specify it when you start the container.', file=sys.stderr)
     sys.exit(1)
 
-# Create logs folder
-os.mkdir('./logs')
+# Check if the 'logs' directory exists before creating it
+if not os.path.exists('./logs'):
+    os.mkdir('./logs')
 
 app = Flask(__name__)
 CORS(app)
