@@ -1,0 +1,5 @@
+# Open an interactive session inside the running container
+docker exec -it my-mlops-container /bin/bash
+
+# Retrieve information about the OS in the container
+cat /etc/*release
