@@ -1,0 +1,5 @@
+# Pull the image from Docker Hub
+docker pull jrpythagore20/coursesilv2024dockerhub:mlops-backend
+
+# Run the container in detached mode
+docker run -d -p 8080:5000 -e CURRENT_ENVIRONMENT=production jrpythagore20/coursesilv2024dockerhub:mlops-backend
