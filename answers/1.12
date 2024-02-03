@@ -1,0 +1,5 @@
+# Start the Back-end Container
+docker run -d -p 5000:5000 --name backend jrpythagore20/coursesilv2024dockerhub:mlops-backend
+
+# Start the Front-end Container Pointing to the Back-end
+docker run -d -p 8080:80 --name frontend --env WS_BACK_URL=http://localhost:5000 jrpythagore20/coursesilv2024dockerhub:mlops-frontend
