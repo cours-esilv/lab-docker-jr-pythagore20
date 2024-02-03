@@ -1,0 +1,5 @@
+# Stop all Containers
+docker stop $(docker ps -aq)
+
+# Delete all Local Images
+docker rmi -f $(docker images -q)
