@@ -1,0 +1,4 @@
+version: '3'
+services:
+  mlops-backend:
+    image: jrpythagore20/coursesilv2024dockerhub:mlops-backend
