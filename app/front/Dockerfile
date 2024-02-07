@@ -1,14 +1,14 @@
-# Use a lightweight web server as a parent image
+# Utiliser une image légère d'un serveur web comme image parent
 FROM nginx:alpine
 
-# Set the working directory in the container
+# Définir le répertoire de travail dans le conteneur
 WORKDIR /usr/share/nginx/html
 
-# Copy the contents of the 'app/front' directory into the container at /usr/share/nginx/html
+# Copier le contenu du répertoire 'app/front' dans le conteneur à /usr/share/nginx/html
 COPY ./ /usr/share/nginx/html
 
-# Define environment variable for back-end URL
+# Définir la variable d'environnement pour l'URL du back-end
 ENV WS_BACK_URL=http://backend:5000
 
-# Use an entrypoint to set environment variable and start nginx
+# Utiliser un entrypoint pour définir la variable d'environnement et démarrer nginx
 ENTRYPOINT ["sh", "-c", "envsubst '$$WS_BACK_URL' < /usr/share/nginx/html/index.html > /usr/share/nginx/html/index.html && exec nginx -g 'daemon off;'"]
