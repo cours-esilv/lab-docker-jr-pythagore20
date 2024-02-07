@@ -11,8 +11,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the backend code into the container
-COPY back.py .
+COPY app.py .
 
 # Set the command to run the backend code
-CMD ["python", "back.py"]
+CMD ["python", "app.py"]
 
